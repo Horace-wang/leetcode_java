@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,9 +22,13 @@ public class RecentCounter {
         int result = 0;
         count.add(t);
         int start = t - grep;
-        for (Integer integer : count) {
-            if (integer >= start && integer <= t) {
+        Iterator<Integer> iterator = count.iterator();
+        while (iterator.hasNext()) {
+            Integer next = iterator.next();
+            if (next >= start && next <= t) {
                 result++;
+            } else {
+                iterator.remove();
             }
         }
         return result;
